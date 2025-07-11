@@ -48,7 +48,7 @@ import xyz.block.trailblaze.AndroidMaestroTrailblazeAgent
 import xyz.block.trailblaze.agent.TrailblazeRunner
 import xyz.block.trailblaze.agent.model.TestObjective
 import xyz.block.trailblaze.agent.model.TrailblazePromptStep
-import xyz.block.trailblaze.android.InstrumentationArgUtil
+import xyz.block.trailblaze.android.openai.OpenAiInstrumentationArgUtil
 import xyz.block.trailblaze.android.uiautomator.AndroidOnDeviceUiAutomatorScreenState
 import xyz.block.trailblaze.api.TestAgentRunner
 import xyz.block.trailblaze.logs.client.TrailblazeJsonInstance
@@ -92,9 +92,9 @@ object TrailblazeAndroidOnDeviceMcpServer {
   private val trailblazeRunner: TestAgentRunner = TrailblazeRunner(
     trailblazeToolRepo = trailblazeToolRepo,
     llmClient = OpenAILLMClient(
-      apiKey = InstrumentationArgUtil.getApiKeyFromInstrumentationArg(),
+      apiKey = OpenAiInstrumentationArgUtil.getApiKeyFromInstrumentationArg(),
       settings = OpenAIClientSettings(
-        baseUrl = InstrumentationArgUtil.getBaseUrlFromInstrumentationArg()
+        baseUrl = OpenAiInstrumentationArgUtil.getBaseUrlFromInstrumentationArg()
       )
     ),
     llmModel = OpenAIModels.Chat.GPT4_1,
