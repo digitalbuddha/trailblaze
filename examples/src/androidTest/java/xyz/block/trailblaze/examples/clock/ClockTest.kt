@@ -10,7 +10,7 @@ import xyz.block.trailblaze.android.openai.OpenAiTrailblazeRule
 /**
  * Example test showing how to use Trailblaze with AI to use the Clock app via prompts.
  */
-class AirbnbSearchTest {
+class ClockTest {
 
   @get:Rule
   val trailblazeRule = OpenAiTrailblazeRule(
@@ -21,25 +21,22 @@ class AirbnbSearchTest {
   fun setUp() {
     trailblazeRule.maestroCommands(
       LaunchAppCommand(
-        appId = "com.airbnb.android.development",
-        stopApp = true,
-        clearState = true,
+        appId = "com.google.android.deskclock",
+        stopApp = false,
+        clearState = false,
       )
     )
   }
 
   @Test
-  fun searchForPortland() {
+  fun setAnAlarm() {
     trailblazeRule.prompt(
       """
-      - open the airbnb app
-      - close login if it is open
-      - start your search and search for portland listings for the month of september 
-      - pick any date
-      - add 1 adult and 2 children
-      - start the search
-      - make sure search completes and you see results from portland
+      - Add a new alarm for 7:30 AM
+      - After it's been added, turn it off
+      - Delete the alarm
       """.trimIndent()
     )
   }
+
 }
