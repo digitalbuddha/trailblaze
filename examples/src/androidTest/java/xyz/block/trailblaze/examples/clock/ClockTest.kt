@@ -1,7 +1,9 @@
 package xyz.block.trailblaze.examples.clock
 
 import ai.koog.prompt.executor.clients.openai.OpenAILLMClient
+import ai.koog.prompt.executor.clients.openai.OpenAIClientSettings
 import ai.koog.prompt.executor.clients.openai.OpenAIModels
+import maestro.orchestra.BackPressCommand
 import maestro.orchestra.LaunchAppCommand
 import org.junit.Before
 import org.junit.Rule
@@ -18,6 +20,9 @@ class ClockTest {
   val trailblazeRule = AndroidTrailblazeRule(
     llmClient = OpenAILLMClient(
       apiKey = InstrumentationArgUtil.getApiKeyFromInstrumentationArg(),
+      settings = OpenAIClientSettings(
+        baseUrl = InstrumentationArgUtil.getBaseUrlFromInstrumentationArg()
+      )
     ),
     llmModel = OpenAIModels.Chat.GPT4_1,
   )
@@ -26,7 +31,7 @@ class ClockTest {
   fun setUp() {
     trailblazeRule.maestroCommands(
       LaunchAppCommand(
-        appId = "com.google.android.deskclock",
+        appId = "com.airbnb.android",
         stopApp = false,
         clearState = false,
       )
@@ -37,10 +42,11 @@ class ClockTest {
   fun setAnAlarm() {
     trailblazeRule.prompt(
       """
-      - Add a new alarm for 7:30 AM
-      - After it's been added, turn it off
-      - Delete the alarm
+      - search for Portland
       """.trimIndent()
+    )
+    trailblazeRule.maestroCommands(
+      BackPressCommand()
     )
   }
 

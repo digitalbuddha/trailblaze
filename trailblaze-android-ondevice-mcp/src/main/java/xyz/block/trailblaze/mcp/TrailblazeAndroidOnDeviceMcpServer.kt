@@ -7,6 +7,7 @@ import ai.koog.agents.core.tools.ToolResult
 import ai.koog.agents.core.tools.annotations.InternalAgentToolsApi
 import ai.koog.agents.mcp.ToolArgs
 import ai.koog.prompt.executor.clients.openai.OpenAILLMClient
+import ai.koog.prompt.executor.clients.openai.OpenAIClientSettings
 import ai.koog.prompt.executor.clients.openai.OpenAIModels
 import io.ktor.http.ContentType
 import io.ktor.http.HttpStatusCode
@@ -90,7 +91,12 @@ object TrailblazeAndroidOnDeviceMcpServer {
 
   private val trailblazeRunner: TestAgentRunner = TrailblazeRunner(
     trailblazeToolRepo = trailblazeToolRepo,
-    llmClient = OpenAILLMClient(InstrumentationArgUtil.getApiKeyFromInstrumentationArg()),
+    llmClient = OpenAILLMClient(
+      apiKey = InstrumentationArgUtil.getApiKeyFromInstrumentationArg(),
+      settings = OpenAIClientSettings(
+        baseUrl = InstrumentationArgUtil.getBaseUrlFromInstrumentationArg()
+      )
+    ),
     llmModel = OpenAIModels.Chat.GPT4_1,
     screenStateProvider = screenStateProvider,
     agent = trailblazeAgent,

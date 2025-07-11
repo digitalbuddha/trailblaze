@@ -1,6 +1,7 @@
 package xyz.block.trailblaze.examples.calculator
 
 import ai.koog.prompt.executor.clients.openai.OpenAILLMClient
+import ai.koog.prompt.executor.clients.openai.OpenAIClientSettings
 import ai.koog.prompt.executor.clients.openai.OpenAIModels
 import maestro.orchestra.LaunchAppCommand
 import org.junit.Before
@@ -19,6 +20,9 @@ class AndroidCalculatorOnePlusTwoAiTest {
   val trailblazeRule = AndroidTrailblazeRule(
     llmClient = OpenAILLMClient(
       apiKey = InstrumentationArgUtil.getApiKeyFromInstrumentationArg(),
+      settings = OpenAIClientSettings(
+        baseUrl = InstrumentationArgUtil.getBaseUrlFromInstrumentationArg()
+      )
     ),
     llmModel = OpenAIModels.Chat.GPT4_1,
   )
