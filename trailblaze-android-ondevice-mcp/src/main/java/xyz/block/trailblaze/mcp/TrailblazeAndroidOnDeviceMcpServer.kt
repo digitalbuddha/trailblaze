@@ -6,6 +6,7 @@ import ai.koog.agents.core.tools.ToolRegistry
 import ai.koog.agents.core.tools.ToolResult
 import ai.koog.agents.core.tools.annotations.InternalAgentToolsApi
 import ai.koog.agents.mcp.ToolArgs
+import ai.koog.prompt.executor.clients.openai.OpenAIClientSettings
 import ai.koog.prompt.executor.clients.openai.OpenAILLMClient
 import ai.koog.prompt.executor.clients.openai.OpenAIModels
 import io.ktor.http.ContentType
@@ -40,6 +41,7 @@ import io.modelcontextprotocol.kotlin.sdk.server.ServerOptions
 import io.modelcontextprotocol.kotlin.sdk.server.SseServerTransport
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.JsonPrimitive
 import kotlinx.serialization.json.decodeFromJsonElement
@@ -47,7 +49,7 @@ import xyz.block.trailblaze.AndroidMaestroTrailblazeAgent
 import xyz.block.trailblaze.agent.TrailblazeRunner
 import xyz.block.trailblaze.agent.model.TestObjective
 import xyz.block.trailblaze.agent.model.TrailblazePromptStep
-import xyz.block.trailblaze.android.InstrumentationArgUtil
+import xyz.block.trailblaze.android.openai.OpenAiInstrumentationArgUtil
 import xyz.block.trailblaze.android.uiautomator.AndroidOnDeviceUiAutomatorScreenState
 import xyz.block.trailblaze.api.TestAgentRunner
 import xyz.block.trailblaze.logs.client.TrailblazeJsonInstance
@@ -90,7 +92,12 @@ object TrailblazeAndroidOnDeviceMcpServer {
 
   private val trailblazeRunner: TestAgentRunner = TrailblazeRunner(
     trailblazeToolRepo = trailblazeToolRepo,
-    llmClient = OpenAILLMClient(InstrumentationArgUtil.getApiKeyFromInstrumentationArg()),
+    llmClient = OpenAILLMClient(
+      apiKey = OpenAiInstrumentationArgUtil.getApiKeyFromInstrumentationArg(),
+      settings = OpenAIClientSettings(
+        baseUrl = OpenAiInstrumentationArgUtil.getBaseUrlFromInstrumentationArg(),
+      ),
+    ),
     llmModel = OpenAIModels.Chat.GPT4_1,
     screenStateProvider = screenStateProvider,
     agent = trailblazeAgent,
