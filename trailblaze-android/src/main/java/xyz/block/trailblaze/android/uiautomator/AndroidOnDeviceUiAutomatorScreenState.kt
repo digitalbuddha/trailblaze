@@ -132,14 +132,12 @@ class AndroidOnDeviceUiAutomatorScreenState(
       try {
         if (setOfMarkEnabled && screenshotBitmap != null) {
           viewHierarchy?.let {
-            val markedBitmap = addSetOfMark(screenshotBitmap, viewHierarchy)
-            screenshotBitmap.recycle()
-            return markedBitmap
+            return addSetOfMark(screenshotBitmap, viewHierarchy)
           }
         }
         return screenshotBitmap
       } catch (e: Exception) {
-        screenshotBitmap.recycle()
+        screenshotBitmap?.recycle()
         throw e
       }
     }
@@ -164,6 +162,9 @@ class AndroidOnDeviceUiAutomatorScreenState(
         ),
         includeLabel = true,
       )
+      if (mutableBitmap != screenshotBitmap) {
+        screenshotBitmap.recycle()
+      }
       return mutableBitmap
     }
   }
