@@ -6,6 +6,7 @@ import ai.koog.agents.core.tools.ToolRegistry
 import ai.koog.agents.core.tools.ToolResult
 import ai.koog.agents.core.tools.annotations.InternalAgentToolsApi
 import ai.koog.agents.mcp.ToolArgs
+import ai.koog.prompt.executor.clients.openai.OpenAIClientSettings
 import ai.koog.prompt.executor.clients.openai.OpenAILLMClient
 import ai.koog.prompt.executor.clients.openai.OpenAIClientSettings
 import ai.koog.prompt.executor.clients.openai.OpenAIModels
@@ -41,6 +42,7 @@ import io.modelcontextprotocol.kotlin.sdk.server.ServerOptions
 import io.modelcontextprotocol.kotlin.sdk.server.SseServerTransport
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.JsonPrimitive
 import kotlinx.serialization.json.decodeFromJsonElement
@@ -94,8 +96,8 @@ object TrailblazeAndroidOnDeviceMcpServer {
     llmClient = OpenAILLMClient(
       apiKey = OpenAiInstrumentationArgUtil.getApiKeyFromInstrumentationArg(),
       settings = OpenAIClientSettings(
-        baseUrl = OpenAiInstrumentationArgUtil.getBaseUrlFromInstrumentationArg()
-      )
+        baseUrl = OpenAiInstrumentationArgUtil.getBaseUrlFromInstrumentationArg(),
+      ),
     ),
     llmModel = OpenAIModels.Chat.GPT4_1,
     screenStateProvider = screenStateProvider,

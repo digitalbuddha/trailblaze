@@ -14,7 +14,7 @@ class AndroidSettingsTest {
 
   @get:Rule
   val trailblazeRule = OpenAiTrailblazeRule(
-    llmModel = OpenAIModels.Reasoning.O3
+    llmModel = OpenAIModels.Reasoning.O3,
   )
 
   @Before
@@ -24,7 +24,7 @@ class AndroidSettingsTest {
         appId = "com.android.settings",
         stopApp = false,
         clearState = false,
-      )
+      ),
     )
   }
 
@@ -35,7 +35,7 @@ class AndroidSettingsTest {
       - Open the "System" section of the Settings app
       - Tap on the "about device" section.
       - Find the "Build number" and tap on it 7 times.
-      """.trimIndent()
+      """.trimIndent(),
     )
   }
 
@@ -54,8 +54,7 @@ class AndroidSettingsTest {
     text: Build number
     repeat: 7
     retryTapIfNoChange: false
-      """.trimIndent()
+      """.trimIndent(),
     )
   }
-
 }

@@ -31,7 +31,7 @@ object OpenAiInstrumentationArgUtil {
   fun getBaseUrlFromInstrumentationArg(): String {
     val baseUrl = InstrumentationArgUtil.getInstrumentationArg("OPENAI_BASE_URL")
       ?: InstrumentationArgUtil.getInstrumentationArg("openAiBaseUrl")
-    
+
     return if (baseUrl.isNullOrBlank()) {
       "https://api.openai.com/v1/"
     } else {

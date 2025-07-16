@@ -28,7 +28,6 @@ object InstrumentationArgUtil {
 
   fun getInstrumentationArg(key: String): String? = instrumentationArguments.getString(key)
 
-
   fun isAiEnabled(): Boolean {
     val aiEnabled = instrumentationArguments.getString("trailblaze.ai.enabled", "false").toBoolean()
     return aiEnabled

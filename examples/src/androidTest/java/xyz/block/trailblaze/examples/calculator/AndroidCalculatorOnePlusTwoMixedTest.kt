@@ -23,8 +23,8 @@ class AndroidCalculatorOnePlusTwoMixedTest {
     trailblazeRule.tool(
       LaunchAppTrailblazeTool(
         appId = "com.android.calculator2",
-        launchMode = LaunchAppTrailblazeTool.LaunchMode.REINSTALL
-      )
+        launchMode = LaunchAppTrailblazeTool.LaunchMode.REINSTALL,
+      ),
     )
   }
 
@@ -33,14 +33,14 @@ class AndroidCalculatorOnePlusTwoMixedTest {
     trailblazeRule.prompt(
       """
       - calculate 1+2
-      """.trimIndent()
+      """.trimIndent(),
     )
     trailblazeRule.maestro(
       """
 - assertVisible:
     id: "com.android.calculator2:id/result"
     text: "3"
-    """.trimIndent()
+      """.trimIndent(),
     )
   }
 
@@ -49,7 +49,7 @@ class AndroidCalculatorOnePlusTwoMixedTest {
     trailblazeRule.prompt(
       """
       - calculate 1+2
-      """.trimIndent()
+      """.trimIndent(),
     )
     // This will fail because the result is 3, not 4.
     trailblazeRule.maestro(
@@ -57,7 +57,7 @@ class AndroidCalculatorOnePlusTwoMixedTest {
 - assertVisible:
     id: "com.android.calculator2:id/result"
     text: "4"
-    """.trimIndent()
+      """.trimIndent(),
     )
   }
 }

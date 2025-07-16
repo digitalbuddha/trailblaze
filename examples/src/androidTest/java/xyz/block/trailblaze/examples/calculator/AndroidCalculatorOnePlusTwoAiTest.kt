@@ -22,8 +22,8 @@ class AndroidCalculatorOnePlusTwoAiTest {
   fun setUp() {
     trailblazeRule.maestroCommands(
       LaunchAppCommand(
-        appId = "com.android.calculator2"
-      )
+        appId = "com.android.calculator2",
+      ),
     )
   }
 
@@ -33,7 +33,7 @@ class AndroidCalculatorOnePlusTwoAiTest {
       """
       - calculate 1+2
       - verify the result is 3
-      """.trimIndent()
+      """.trimIndent(),
     )
   }
 
@@ -43,8 +43,7 @@ class AndroidCalculatorOnePlusTwoAiTest {
       """
       - calculate 1+2
       - verify the result is 4
-      """.trimIndent()
+      """.trimIndent(),
     )
   }
-
 }

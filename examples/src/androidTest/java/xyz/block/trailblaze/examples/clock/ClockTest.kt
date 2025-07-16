@@ -24,7 +24,7 @@ class ClockTest {
         appId = "com.google.android.deskclock",
         stopApp = false,
         clearState = false,
-      )
+      ),
     )
   }
 
@@ -35,8 +35,7 @@ class ClockTest {
       - Add a new alarm for 7:30 AM
       - After it's been added, turn it off
       - Delete the alarm
-      """.trimIndent()
+      """.trimIndent(),
     )
   }
-
 }
