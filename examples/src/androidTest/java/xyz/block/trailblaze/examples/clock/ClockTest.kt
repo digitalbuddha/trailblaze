@@ -14,7 +14,7 @@ class ClockTest {
 
   @get:Rule
   val trailblazeRule = OpenAiTrailblazeRule(
-    llmModel = OpenAIModels.Chat.GPT4_1
+    llmModel = OpenAIModels.Reasoning.O3
   )
 
   @Before

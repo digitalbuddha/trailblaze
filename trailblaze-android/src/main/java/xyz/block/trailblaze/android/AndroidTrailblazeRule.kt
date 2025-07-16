@@ -23,7 +23,7 @@ import xyz.block.trailblaze.toolcalls.TrailblazeToolSet
 /**
  * On-Device Android Trailblaze Rule Implementation.
  */
-class AndroidTrailblazeRule(
+open class AndroidTrailblazeRule(
   val llmClient: LLMClient,
   val llmModel: LLModel,
 ) : SimpleTestRuleChain(

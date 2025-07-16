@@ -46,6 +46,7 @@ dependencies {
   api(libs.maestro.client) { isTransitive = false }
   api(libs.koog.agents.tools)
   api(libs.koog.prompt.llm)
+  api(libs.koog.prompt.executor.openai)
 
   implementation(project(":trailblaze-agent"))
   implementation(libs.ktor.client.core.jvm)

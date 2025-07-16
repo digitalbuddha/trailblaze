@@ -30,6 +30,9 @@ subprojects
           System.getenv("OPENAI_API_KEY")?.let { apiKey ->
             testInstrumentationRunnerArguments["OPENAI_API_KEY"] = apiKey
           }
+          System.getenv("OPENAI_BASE_URL")?.let { apiKey ->
+            testInstrumentationRunnerArguments["OPENAI_BASE_URL"] = apiKey
+          }
           testInstrumentationRunnerArguments["trailblaze.logs.endpoint"] =
             rootProject.property("trailblaze.logs.endpoint")
               ?.toString() ?: "https://10.0.2.2:8443"
