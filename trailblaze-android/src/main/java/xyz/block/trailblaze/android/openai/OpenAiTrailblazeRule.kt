@@ -2,7 +2,6 @@ package xyz.block.trailblaze.android.openai
 
 import ai.koog.prompt.executor.clients.openai.OpenAILLMClient
 import ai.koog.prompt.executor.clients.openai.OpenAIClientSettings
-import ai.koog.prompt.executor.clients.openai.OpenAILLMClient
 import ai.koog.prompt.executor.clients.openai.OpenAIModels
 import ai.koog.prompt.llm.LLModel
 import xyz.block.trailblaze.android.AndroidTrailblazeRule
